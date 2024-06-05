@@ -1,0 +1,41 @@
+<section id="hero" class="hero--{{ post.slug }} hero">
+	{# Dummy header #}
+	{% include 'partial/dummy-header.twig' %}
+	<div class="content width--default">
+		{# Content container #}
+		<div class="hero__content_container introReveal">
+			{# Title #}
+			<h1 class="hero__title">
+				{% if post.hero_title and 'title' in post.hero_options %}
+				{{ post.hero_title }}
+				{% else %}
+				{{ post.title }}
+				{% endif %}
+			</h1>
+			{# Subtitle #}
+			{% if post.hero_subtitle and 'subtitle' in post.hero_options %}
+			<p class="hero__subtitle">{{ post.hero_subtitle }}</p>
+			{% endif %}
+			{# Button(s) #}
+			{% if post.meta('hero_buttons') and 'buttons' in post.hero_options %}
+			<div class="hero__button_container">
+				{% for button in post.meta('hero_buttons') %}
+				{% if button.link %}
+				<a href="{{ button.link }}" {% include 'partial/button-target.twig' %} class="hero__button button--solid-primary">
+				{% else %}
+				<div class="button--null button--solid-primary">
+				{% endif %}
+					<span class="button__label">{{ button.label }}</span>
+				{{ button.link ? '</a>' : '</div>' }}
+				{% endfor %}
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	{# Background #}
+	{% if post.hero_background and 'background' in post.hero_options %}
+	<picture class="hero__background picture--background">
+		<img src="{{ Image(post.hero_background).src }}" alt="{{ Image(post.hero_background).alt }}" class="introReveal" loading="lazy">
+	</picture>
+	{% endif %}
+</section>

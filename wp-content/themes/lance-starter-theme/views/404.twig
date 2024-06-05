@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<main id="content">
+
+  {% include 'partial/dummy-header.twig' %}
+
+  <section class="section--default">
+    <div class="content width--1440">
+      <h1>404</h1>
+      <div class="text">
+        <p>Sorry, we couldn't find what you're looking for.</p>
+      </div>
+      {# Button #}
+      <a class="button--outline-primary" href="/" target="_self">
+        {# Icon #}
+        <span class="button__icon icon--left">
+          {{ source(directory ~ '/static/images/icons/chevron.svg') }}
+        </span>
+        {# Label #}
+        <span class="button__label label">Back to Home</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

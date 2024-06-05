@@ -1,0 +1,32 @@
+<div class="social-media">
+  {% if options.facebook %}
+  <a class="facebook_wrapper" href="{{ options.facebook }}" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Follow us on Facebook">
+    <span class="facebook__icon icon--md">{{ source(directory ~ '/static/images/social/facebook.svg') }}</span>
+  </a>
+  {% endif %}
+  {% if options.instagram %}
+  <a class="instagram_wrapper" href="{{ options.instagram }}" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Follow us on Instagram">
+    <span class="instagram__icon icon--md">{{ source(directory ~ '/static/images/social/instagram.svg') }}</span>
+  </a>
+  {% endif %}
+  {% if options.linkedin %}
+  <a class="linkedin_wrapper" href="{{ options.linkedin }}" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Follow us on LinkedIn">
+    <span class="linkedin__icon icon--md">{{ source(directory ~ '/static/images/social/linkedin.svg') }}</span>
+  </a>
+  {% endif %}
+  {% if options.tiktok %}
+  <a class="tiktok_wrapper" href="{{ options.tiktok }}" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="Follow us on TikTok">
+    <span class="tiktok__icon icon--md">{{ source(directory ~ '/static/images/social/tiktok.svg') }}</span>
+  </a>
+  {% endif %}
+  {% if options.x_twitter %}
+  <a class="x-twitter_wrapper" href="{{ options.x_twitter }}" target="_blank" rel="noopener noreferrer" title="X, formerly Twitter" aria-label="Follow us on X, formerly Twitter">
+    <span class="x-twitter__icon icon--md">{{ source(directory ~ '/static/images/social/x-twitter.svg') }}</span>
+  </a>
+  {% endif %}
+  {% if options.youtube %}
+  <a class="youtube_wrapper" href="{{ options.youtube }}" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="Follow us on YouTube">
+    <span class="youtube__icon icon--md">{{ source(directory ~ '/static/images/social/youtube.svg') }}</span>
+  </a>
+  {% endif %}
+</div>

@@ -1,0 +1,20 @@
+{# Post template for all sites #}
+
+{% extends "base.twig" %}
+
+{% block content %}
+<main id="content">
+	<article>
+		{# Hero #}
+		{% include 'hero.twig' %} {# <section id="hero"> #}
+		<div class="content-wrapper">
+			<section class="section--default">
+				<div class="content width--default reveal">
+					{# Content #}
+					{{ post.content }}
+				</div>
+			</section>
+		</div>
+	</article>
+</main>
+{% endblock %}

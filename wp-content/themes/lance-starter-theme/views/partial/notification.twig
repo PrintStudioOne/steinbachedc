@@ -1,0 +1,10 @@
+<div id="notification" class="notification_container">
+  <div class="content introReveal">
+    {% for notification in options.notifications if notification.enable == "true" %}
+    <div class="notification{% if loop.first %} active{% endif %}">
+      {% if notification.link %}<a href="{{ notification.link }}" {% if notification.new_tab == true %}target="_blank" rel="noopener noreferrer"{% else %}target="_self"{% endif %} class="underline">{% endif %}<span class="notification__label">{{ notification.label }}</span>{% if notification.link %}</a>{% endif %}
+      {% if notification.subtitle %}<span class="notification__subtitle">{{ notification.subtitle }}</span>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

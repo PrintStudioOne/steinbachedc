@@ -1,0 +1,16 @@
+{# Loader template for all sites #}
+
+<div id="loader" tabindex="-1">
+  <div class="content">
+    {# Icon #}
+    <div class="loader__icon">
+      {{ source(directory ~ '/static/images/icon.svg') }}
+    </div>
+    {# Progress #}
+    <div class="loader__progress">
+      <div class="progress-bar_container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+</div>

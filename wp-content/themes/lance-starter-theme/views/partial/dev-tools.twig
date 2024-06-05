@@ -1,0 +1,25 @@
+{# Dev tools for all sites #}
+
+<div id="dev-tools" class="dev-tools" aria-hidden="true">
+  <button id="dev-tools-toggle" class="dev-tools__toggle" title="Dev tools">
+    <span class="chevron icon--xs"><img src="{{ site.theme.link }}/static/images/icons/chevron.svg" alt=""></span>
+    <span class="wrench icon--sm"><img src="{{ site.theme.link }}/static/images/icons/wrench.svg" alt=""></span>
+  </button>
+  <div class="dev-tools__controls">
+    <p class="dev-tools__label">Dev tools:</p>
+    <div class="animation">
+      {# Static #}
+      <button id="static" class="active" tabindex="-1">Static</button>
+      {# Animated #}
+      <button id="animated" tabindex="-1">Animated</button>
+      {# Loop animations #}
+      <button id="loop" tabindex="-1" title="Loop animations">
+        <span class="refresh icon--xs"><img src="{{ site.theme.link }}/static/images/icons/refresh.svg" alt=""></span>
+      </button>
+    </div>
+    {# Clear storage & refresh #}
+    <button id="clearStorage" tabindex="-1">Clear storage & refresh</button>
+    {# Labels #}
+    <button id="labels" tabindex="-1">Show admin labels</button>
+  </div>
+</div>

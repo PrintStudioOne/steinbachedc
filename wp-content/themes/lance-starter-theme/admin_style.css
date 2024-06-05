@@ -1,0 +1,203 @@
+/* ========================================================================== */
+/* Variables
+/* body.wp-core-ui
+/* ========================================================================== */
+
+:root {
+  --colour--background: #1d2327;
+  --colour--background-alt: #2c3338;
+  --colour--primary-100: #e6f1ec;
+  --colour--primary-200: #99c5b4;
+  --colour--primary-300: #4d9a7b;
+  --colour--primary-400: #006F43;
+  --colour--primary-500: #004e2f;
+  --colour--primary-600: #002c1b;
+  --colour--primary-700: #000b07;
+  --colour--neutral-100: #f0f0f0;
+  --colour--neutral-200: #c3c3c3;
+  --colour--neutral-300: #969696;
+  --colour--neutral-400: #696969;
+  --colour--neutral-500: #4a4a4a;
+  --colour--neutral-600: #2a2a2a;
+  --colour--neutral-700: #0a0a0a;
+  --speed--default: 0.4s;
+}
+
+a {
+  color: var(--colour--primary-400);
+  transition: 0.4s;
+}
+
+a:hover {
+  color: var(--colour--primary-500);
+}
+
+/* ========================================================================== */
+/* Login style
+/* body.login
+/* ========================================================================== */
+
+/* Logo */
+body.login #login h1 a {
+  width: 100%;
+  background-image: url('static/images/logo.svg');
+  background-position: center;
+  background-size: contain;
+}
+
+body.login {
+  background-color: var(--colour--background);
+}
+
+body.login #login form {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--colour--background-alt);
+  color: var(--colour--neutral-100);
+}
+
+body.login h1.admin-email__heading {
+  color: white;
+}
+
+body.login #backtoblog a {
+  color: var(--colour-secondary-400);
+}
+
+body.login #backtoblog a:hover {
+  color: var(--colour-secondary-500);
+}
+
+/* ========================================================================== */
+/* Top menu
+/* #wpadminbar
+/* ========================================================================== */
+
+/* Background */
+body.wp-core-ui #wpadminbar {
+  background: var(--colour--background);
+}
+
+/* Logo */
+body.wp-core-ui #wpadminbar ul.ab-top-menu > li#wp-admin-bar-wp-logo {
+  width: 160px;
+}
+
+body.wp-core-ui #wpadminbar li#wp-admin-bar-wp-logo > a.ab-item span.ab-icon {
+  width: 100%;
+}
+
+body.wp-core-ui #wpadminbar ul.ab-top-menu > li#wp-admin-bar-wp-logo > .ab-item .ab-icon::before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-image: url('static/images/logo.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Top menu hover */
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:hover,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:focus, 
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li.hover > a.ab-item, 
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li.hover > a.ab-item::before,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li.hover > a.ab-item span.ab-icon::before,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li.hover > a.ab-item span.ab-label,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:hover::before, 
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:focus::before,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:hover span.ab-icon::before,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:focus span.ab-icon::before,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:hover span.ab-label,
+body.wp-core-ui #wpadminbar #wp-toolbar ul.ab-top-menu li a.ab-item:focus span.ab-label {
+  color: var(--colour--primary-300);
+}
+
+/* ========================================================================== */
+/* Side menu
+/* #adminmenumain
+/* ========================================================================== */
+
+/* Menu background */
+#adminmenu, #adminmenuback, #adminmenuwrap {
+  background: var(--colour--background);
+}
+
+/* Submenu background */
+#adminmenu .wp-submenu {
+  background: var(colour--background-alt);
+}
+
+/* Icons */
+a.wp-has-submenu div.wp-menu-image.svg {
+  filter: brightness(100);
+}
+
+/* Current menu background */ 
+ul#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+ul#adminmenu li.current a.menu-top {
+  background: var(--colour--primary-400);
+}
+
+/* Side menu hover */
+ul#adminmenu li.wp-not-current-submenu a:hover,
+ul#adminmenu li.wp-not-current-submenu a:focus,
+ul#adminmenu li.wp-not-current-submenu a:hover div.wp-menu-image::before,
+ul#adminmenu li.wp-not-current-submenu a:focus div.wp-menu-image::before,
+ul#adminmenu li.wp-not-current-submenu.opensub > a,
+ul#adminmenu li.wp-not-current-submenu.opensub > a div.wp-menu-image::before,
+ul#adminmenu li.wp-has-current-submenu ul.wp-submenu li a:hover,
+ul#adminmenu li.wp-has-current-submenu ul.wp-submenu li a:focus {
+  color: var(--colour--primary-300);
+}
+
+/* ========================================================================== */
+/* Content
+/* #wpbody
+/* ========================================================================== */
+
+/* Outline button */
+body.wp-core-ui .button,
+body.wp-core-ui a.page-title-action,
+body.wp-core-ui button.button-link {
+  border-color: var(--colour--primary-400);
+  color: var(--colour--primary-400);
+  transition: var(--speed--default);
+}
+
+body.wp-core-ui .button:hover,
+body.wp-core-ui .button:focus,
+body.wp-core-ui a.page-title-action:hover,
+body.wp-core-ui a.page-title-action:focus,
+body.wp-core-ui button.button-link:hover,
+body.wp-core-ui button.button-link:focus {
+  border-color: var(--colour--primary-500);
+  color: var(--colour--primary-500);
+}
+
+/* Solid button */
+body.wp-core-ui .button-primary {
+  border-color: var(--colour--primary-400);
+  background: var(--colour--primary-400);
+  color: var(--colour--neutral-100);
+  transition: var(--speed--default);
+}
+
+body.wp-core-ui .button-primary:hover, 
+body.wp-core-ui .button-primary:focus {
+  border-color: var(--colour--primary-500);
+  background: var(--colour--primary-500);
+  color: var(--colour--neutral-100);
+}
+
+/* Add New Theme */
+.theme-browser .theme.add-new-theme a:focus::after, 
+.theme-browser .theme.add-new-theme a:hover::after {
+  background: var(--colour--primary-400);
+}
+
+.theme-browser .theme.add-new-theme a:focus span::after, 
+.theme-browser .theme.add-new-theme a:hover span::after {
+  color: var(--colour--primary-400);
+}

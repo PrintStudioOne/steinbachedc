@@ -1,0 +1,41 @@
+<header id="site-header" class="{% if notifications == "true" %}with-notification{% endif %}">
+
+  {% if notifications == "true" %}
+  {% include 'partial/notification.twig' %}
+  {% endif %}
+
+  {# Fixed nav-bar #}
+  <div id="nav-bar--fixed">
+    <div class="content width--default">
+      {# Left #}
+      <div class="nav-bar__left">
+        {# Logo #}
+        <a id="header-logo" class="header__logo introReveal" aria-label="{{ site.name }}" href="{{ site.url }}" >
+          {{ source(directory ~ '/static/images/logo.svg') }}
+        </a>
+      </div>
+      {# Right #}
+      <div class="nav-bar__right">
+        {# Nav-bar menu #}
+        <nav id="nav-bar__menu" class="introReveal" role="menu">
+          {% include 'menu.twig' with{'items':menu.get_items} %}
+        </nav>
+        {# Hamburger #}
+        {% include 'partial/hamburger.twig' %}
+      </div>
+    </div>
+  </div>
+
+  {# Nav-overlay #}
+  <dialog id="nav-overlay" class="modal modal--hidden" aria-modal="true">
+    {# Dummy header #}
+	  {% include 'partial/dummy-header.twig' %}
+    <div class="content width--default">
+      {# Nav-overlay menu #}
+      <nav id="nav-overlay__menu" role="menu">
+        {% include 'menu.twig' with{'items':menu.get_items} %}
+      </nav>
+    </div>
+  </dialog>
+  
+</header>
