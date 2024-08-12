@@ -1,0 +1,50 @@
+{% set id = 'hero' %}
+{% set title = post.meta(id ~ '_title') %}
+{% set subtitle = post.meta(id ~ '_subtitle') %}
+{% set buttons = post.meta(id ~ '_buttons') %}
+{% set text = post.meta(id ~ '_text') %}
+{% set background_image = post.meta(id ~ '_background_image') %}
+
+<section id="hero" class="hero--{{ post.slug }} section--hero">
+	{# Dummy header #}
+	{% include 'partial/dummy-header.twig' %}
+	<div class="content width--default">
+		{# Content container #}
+		<div class="hero__content_container introReveal">
+			{# Title #}
+			<h1 class="hero__title{% if not fn('is_page', 'Home') %} heading--overline{% endif %}">
+				{% if fn('is_page', 'Home') %}
+				More for your 
+				<span class="static-word">business</span>
+				<span class="cycle-word"></span>
+				{% elseif title and 'title' in post.hero_options %}
+				{{ title }}
+				{% else %}
+				{{ post.title }}
+				{% endif %}
+			</h1>
+			<div class="hero__text_container">
+				{# Subtitle #}
+				{% if subtitle and 'subtitle' in post.hero_options %}
+				<p class="hero__subtitle">{{ subtitle }}</p>
+				{% endif %}
+				{# Text #}
+				{% if text and 'text' in post.hero_options %}
+				<div class="hero__text">
+					{{ text }}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{# Overlay #}
+	<span class="hero__overlay">
+		{{ source(directory ~ '/static/images/lines.svg') }}
+	</span>
+	{# Background #}
+	{% if background_image and 'background_image' in post.hero_options %}
+	<picture class="hero__background picture--background">
+		<img src="{{ Image(background_image).src }}" alt="{{ Image(background_image).alt }}" class="introReveal">
+	</picture>
+	{% endif %}
+</section>

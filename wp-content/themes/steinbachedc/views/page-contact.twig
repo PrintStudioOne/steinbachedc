@@ -1,0 +1,99 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# Introduction #}
+	{% set id = "intro" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+	{% set shortcode = post.meta(id ~ '_shortcode') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if subheading %}
+			<h2 class="{{ id }}__subheading h3">{{ subheading }}</h2>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# Contact form #}
+	{% set id = "form" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+	{% set shortcode = post.meta(id ~ '_shortcode') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<aside class="{{ id }}__aside">
+				{# Member #}
+				<div class="member">
+					{% if post.meta('team_member').member_image %}
+					<picture class="member__image">
+						<img src="{{ Image(post.meta('team_member').member_image).src }}" alt="{{ Image(post.meta('team_member').image).alt }}" loading="lazy">
+					</picture>
+					{% endif %}
+					<h2 class="member__name h3">{{ post.meta('team_member').title }}</h3>
+					<p class="member__role">{{ post.meta('team_member').member_role }}</p>
+				</div>
+				{# Phone #}
+				<h2 class="phone__heading heading--overline">PHONE</h2>
+				{% if options.phone_number %}
+				<a class="phone_wrapper" href="tel:{{ options.phone_number }}" aria-label="Phone us at {{ options.phone_number }}">
+					<span>p. </span>
+					<span class="phone__text">
+						<span class="phone__number">
+							{% set phoneNumber = options.phone_number %}
+							{% include 'partial/phone-number.twig' %}
+						</span>
+					</span>
+				</a>
+				{% endif %}
+				{# Address #}
+				<h2 class="address__heading heading--overline">LOCATION</h2>
+				{% if options.address.line_1 or options.address.line_2 or options.city or options.province or options.postal_code %}
+				<div class="address_wrapper">
+					<div class="address__text">
+						<p>
+						{% if options.address.line_1 %}
+						{{ options.address.line_1 }}
+						{% endif %}
+						{% if options.address.line_2 %}
+						{{ options.address.line_2 }}
+						{% endif %}
+						{% if options.address.city %}{{ options.address.city }}{% endif %}{% if options.address.city and options.address.province %}, {% endif %}{% if options.address.province %}{{ options.address.province }}{% endif %}{% if options.address.postal_code %}  {{ options.address.postal_code }}{% endif %}
+						</p>
+					</div>
+				</div>
+				{% endif %}
+			</aside>
+			<div class="form__form">
+				{% if shortcode %}
+				{{ fn('do_shortcode', '' ~ shortcode ~ '') }}
+				{% endif %}
+			</div>
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+</div>
+
+{% endblock %}

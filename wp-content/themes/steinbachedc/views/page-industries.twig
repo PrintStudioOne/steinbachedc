@@ -1,0 +1,150 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# STRATEGY #}
+	{% set id = "intro" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+			{% endif %}
+			{% if text %}
+			<div class="{{ id }}__text text">{{ text }}</div>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# ROBUST NETWORK #}
+	{% set id = "network" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--background-image">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<div class="{{ id }}__content_container">
+				{% if heading %}
+				<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+				{% endif %}
+				{% if subheading %}
+				<h3 class="{{ id }}__subheading">{{ subheading }}</h3>
+				{% endif %}
+				{% if text %}
+				<div class="{{ id }}__text text">{{ text }}</div>
+				{% endif %}
+			</div>
+		</div>
+		{% if image %}
+		<picture class="{{ id }}__image picture--background">
+			<img src="{{ Image(image).src }}" alt="{{ Image(image).alt }}" loading="lazy">
+		</picture>
+		{% endif %}
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# SUCCESS STORIES #}
+	{% set id = "stories" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--block">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<aside class="{{ id }}__aside">
+				<div class="aside__container">
+					{% if heading %}
+					<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+					{% endif %}
+					{% if repeater %}
+					<ol class="{{ id }}__repeater--legend">
+						{% for item in repeater %}
+						<li class="item" data-id="{{ item.id }}">
+							<a href="#{{ item.id }}" target="_self">{{ item.heading }}</a>
+						</li>
+						{% endfor %}
+					</ol>
+					{% endif %}
+				</div>
+			</aside>
+			{% if repeater %}
+			<ol class="{{ id }}__repeater ol--custom">
+				{% for item in repeater %}
+				<li id="{{ item.id }}" class="item" data-id="{{ item.id }}">
+					<div class="item__container">
+						{% if item.heading %}
+						<h3 class="item__heading">{{ item.heading }}</h3>
+						{% endif %}
+						{% if item.text %}
+						<div class="item__text text">{{ item.text|wpautop }}</div>
+						{% endif %}
+						{% if item.repeater %}
+						<div class="toggle_container">
+							<button class="subitem__heading h4 toggle__button">
+								<span class="button__label">Success Stories</span>
+								<span class="button__icon">{{ source(directory ~ '/static/images/icons/chevron.svg') }}</span>
+							</button>
+							<ul class="item__repeater toggle__area no-bullets">
+								{% for subitem in item.repeater %}
+								<li class="subitem">
+									{% if subitem.image %}
+									<picture class="subitem__image">
+										<img src="{{ Image(subitem.image).src }}" alt="{{ Image(subitem.image).src }}" loading="lazy">
+									</picture>
+									{% endif %}
+									{% if subitem.text %}
+									<div class="subitem__text text">
+										{{ subitem.text|wpautop }}
+										{% if subitem.url %}
+										<a href="{{ subitem.url }}" target="_blank" rel="noopener noreferrer">Visit Website</a>
+										{% endif %}
+									</div>
+									{% endif %}
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+						{% endif %}
+					</div>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ site.theme.link }}/static/js/page-industries.js"></script>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# Our Partnerships #}
+	{% set id = "partnerships" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content content--split width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading">{{ heading }}</h2>
+			{% endif %}
+			{% if text %}
+			<div class="{{ id }}__text text">{{ text }}</div>
+			{% endif %}
+			{% if repeater %}
+			<ul class="{{ id }}__repeater no-bullets">
+				{% for item in repeater %}
+				<li class="item">
+					{% if item.image %}
+					<picture class="item__image">
+						<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
+					</picture>
+					{% endif %}
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# Sections #}
+	{% set id = "sections" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<div id="{{ id }}" class="section--{{ id }} section--block">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% for section in post.meta('sections') %}
+			<section>
+				{% if section.heading %}
+				<h2 class="section__heading">{{ section.heading }}</h2>
+				{% endif %}
+				{% if section.code %}
+				<div class="section__code">{{ section.code }}</div>
+				{% endif %}
+			</section>
+			{% endfor %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

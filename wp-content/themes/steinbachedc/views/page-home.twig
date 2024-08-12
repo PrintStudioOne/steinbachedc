@@ -1,0 +1,231 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# Our city. Your brand. No limits. #}
+	{% set id = "intro" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<div class="picture--circle_container">
+				<picture class="{{ id }}__image picture--circle">
+					{% if image %}
+					<img src="{{ Image(image).src }}" alt="{{ Image(image).alt }}" loading="lazy">
+					{% else %}
+					{{ placeholder }}
+					{% endif %}
+				</picture>
+			</div>
+			<div class="{{ id }}__content_container">
+				{% if heading %}
+				<h2 class="{{ id }}__heading">{{ heading }}</h2>
+				{% endif %}
+				{% if text %}
+				<div class="{{ id }}__text text">{{ text }}</div>
+				{% endif %}
+				{% if button %}
+				<a class="{{ id }}__button button--custom" href="{{ button.link }}" {% include 'partial/button-target.twig' %}>
+					<span class="button__icon">{{ source(directory ~ '/static/images/icons/arrow.svg') }}</span>
+					<span class="button__label">{{ button.label }}</span>
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# More for you here, in Steinbach #}
+	{% set id = "move" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--block">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if video %}
+			<div class="{{ id }}__video">
+				{{ video }}
+			</div>
+			{% endif %}
+			<div class="{{ id }}__container width--800">
+				{% if heading %}
+				<h2 class="{{ id }}__heading">{{ heading }}</h2>
+				{% endif %}
+				{% if text %}
+				<div class="{{ id }}__text text">{{ text }}</div>
+				{% endif %}
+				{% if button %}
+				<a class="{{ id }}__button button--custom" href="{{ button.link }}" {% include 'partial/button-target.twig' %}>
+					<span class="button__icon">{{ source(directory ~ '/static/images/icons/arrow.svg') }}</span>
+					<span class="button__label">{{ button.label }}</span>
+				</a>
+				{% endif %}
+			</div>
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# Links #}
+	{% set id = "links" %}
+
+	<div id="{{ id }}" class="section--{{ id }} section--custom">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default">
+			{% for link in post.meta('links') %}
+			<a href="{{ link.link }}" class="link reveal">
+				<picture class="link__image picture--cover">
+					{% if link.image %}
+					<img src="{{ Image(link.image).src }}" alt="{{ Image(link.image).alt }}" loading="lazy">
+					{% else %}
+					{{ placeholder }}
+					{% endif %}
+				</picture>
+				<div class="link__content">
+					<h2 class="link__heading">{{ link.heading }}</h2>
+					<p class="link__text">{{ link.text }}</p>
+					<span class="link__button button--icon-outline colour--secondary">
+						{{ source(directory ~ '/static/images/icons/arrow.svg') }}
+					</span>
+				</div>
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+
+	{# Fast Facts #}
+	{% set id = "facts" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--block background--primary-100">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading">{{ heading }}</h2>
+			{% endif %}
+			{% if repeater %}
+			<div class="{{ id }}__repeater_container">
+				<ol class="{{ id }}__repeater ol--custom">
+					{% set counter = 0 %}
+					{% for item in repeater %}
+					{% set counter = counter + 1 %}
+					<li class="item{% if loop.first %} item--active{% endif %}" data-count="{{ counter }}">
+						<div class="item__content">
+							{% if item.heading %}
+							<h3 class="item__heading">{{ item.heading }}</h3>
+							{% endif %}
+							{% if item.text %}
+							<div class="item__text text">{{ item.text|wpautop }}</div>
+							{% endif %}
+							<picture class="item__image">
+								{% if item.image %}
+								<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
+								{% else %}
+								{{ placeholder }}
+								{% endif %}
+							</picture>
+						</div>
+					</li>
+					{% endfor %}
+				</ol>
+				<ol class="{{ id }}__repeater-images no-bullets">
+					{% set counter = 0 %}
+					{% for item in repeater %}
+					{% set counter = counter + 1 %}
+					<li class="item{% if loop.first %} item--active{% endif %}" data-count="{{ counter}}">
+						{% if item.picture_circle == true %}
+						<div class="picture--circle_container">
+							<picture class="item__image picture--circle">
+								{% if item.image %}
+								<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
+								{% else %}
+								{{ placeholder }}
+								{% endif %}
+							</picture>
+						</div>
+						{% else %}
+						<picture class="item__image">
+							{% if item.image %}
+							<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
+							{% else %}
+							{{ placeholder }}
+							{% endif %}
+						</picture>
+						{% endif %}
+						{% endfor %}
+					</li>
+				</ol>
+			</div>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# News #}
+	{% set id = "news" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading">{{ heading }}</h2>
+			{% endif %}
+			<div class="news-slider__buttons">
+				{# <button id="news-prev" class="button--icon-outline icon--left">
+					{{ source(directory ~ '/static/images/icons/chevron.svg') }}
+				</button>
+				<button id="news-next" class="button--icon-outline">
+					{{ source(directory ~ '/static/images/icons/chevron.svg') }}
+				</button> #}
+				<a class="button--solid-primary" href="/news" target="_self">View All</a>
+			</div>
+			<div class="news__list">
+				{% for article in news|slice(0, 3) %}
+				{% set headingLevel = '3' %}
+				{% include '/component/news-card.twig' %}
+				{% endfor %}
+			</div>
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ site.theme.link }}/static/js/page-home.js"></script>
+{% endblock %}

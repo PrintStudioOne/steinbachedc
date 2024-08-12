@@ -1,0 +1,324 @@
+// ========================================================================== //
+// ~ TYPOGRAPHY
+// ========================================================================== //
+
+// Typographic scale:
+// Classic: 6 7 8 9 10 11 12 14 16 18 21 24 30 36 48 60 72
+// Mathematical: 6 7 8 9 10 12 14 16 18 21 24 28 32 36 42 48 55 63 73 84 96
+
+// Weight classes:
+// 100 (Thin), 200 (Extra-light/Ultra-light), 300 (Light), 400 (Normal/Regular), 500 (Medium), 600 (Semi-bold/Demi-bold), 700 (Bold), 800 (Extra-bold/Ultra-bold), 900 (Black/Heavy)
+
+// ========================================================================== //
+// CSS Imports
+// ========================================================================== //
+
+// Adobe Fonts
+// @import url("https://use.typekit.net/ums2zmk.css");
+
+// Google Fonts
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+// Custom fonts
+@font-face {
+  font-family: 'RMNeue-Light';
+  src: url('../fonts/RMNeue-Light.woff') format('woff'),
+       url('../fonts/RMNeue-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'RMNeue-Regular';
+  src: url('../fonts/RMNeue-Regular.woff') format('woff'),
+       url('../fonts/RMNeue-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'RMNeue-Bold';
+  src: url('../fonts/RMNeue-Bold.woff') format('woff'),
+       url('../fonts/RMNeue-Bold.woff2') format('woff2');
+}
+
+
+// ========================================================================== //
+// General
+// ========================================================================== //
+
+.font--heading {
+  color: var(--colour--font);
+	font-style: normal;
+}
+
+.font--body {
+  color: var(--colour--font);
+  font-size: 2rem;
+	font-family: 'RMNeue-Regular', sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  .font--body();
+}
+
+// ========================================================================== //
+// HTML elements
+// h1, h2, h3, h4, h5, h6, p, a, span, strong, em, blockquote, ol, ul, li, td
+// ========================================================================== //
+
+body.home h1 {
+  .font--heading();
+  font-size: 5.4rem;
+  font-family: 'RMNeue-Light', sans-serif;
+  font-weight: 300;
+  @media @min992 {
+    font-size: 10.4rem;
+  }
+}
+
+h2, .h2 {
+  --colour--font: var(--colour--primary-400);
+  .font--heading();
+  margin-bottom: var(--space--3);
+  font-size: 3.2rem;
+  font-family: 'RMNeue-Bold', sans-serif;
+  font-weight: 700;
+  @media @min992 {
+    font-size: 4.8rem;
+  }
+}
+
+h3, .h3 {
+  --colour--font: var(--colour--primary-400);
+  .font--heading();
+  margin-bottom: var(--space--3);
+  font-size: 3.2rem;
+  font-family: 'RMNeue-Bold', sans-serif;
+  font-weight: 700;
+  @media @min992 {
+    font-size: 4rem;
+  }
+}
+
+h4, .h4 {
+  .font--heading();
+  margin-bottom: var(--space--3);
+  color: var(--colour--primary-400);
+  font-size: 2.4rem;
+  font-weight: 700;
+  @media @min992 {
+    font-size: 2.8rem;
+  }
+}
+
+h5, .h5 {
+  .font--heading();
+}
+
+h6, .h6 {
+  .font--heading();
+}
+
+p, span, strong, em, ol, ul, li {
+  color: var(--colour--font);
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--colour--font);
+}
+
+// ========================================================================== //
+// Style classes
+// ========================================================================== //
+
+// - Plugin: ACF Pro (WYSIWYG)
+.text {
+  color: var(--colour--font);
+  line-height: 1.5;
+  > *:not(:last-child) {
+    margin-bottom: var(--space--2);
+  }
+  ol, ul {
+    padding-inline-start: 1em;
+  }
+  a {
+    --underline--colour: var(--colour--primary-400);
+    .underline;
+    color: var(--colour--secondary-400);
+    &:hover {
+      color: var(--colour--primary-400);
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: 2.4rem;
+    color: var(--colour--neutral-700);
+  }
+  blockquote {
+    margin-block: var(--space--4);
+    color: var(--colour--primary-400);
+    font-size: 2.4rem;
+    p {
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+  &.lorem-ipsum {
+    &:empty {
+      &::before {
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+      }
+    }
+  }
+}
+
+.text--left {
+  text-align: left;
+}
+
+.text--center {
+  width: 100%;
+  text-align: center;
+}
+
+.text--right {
+  width: 100%;
+  text-align: right;
+}
+
+.text--uppercase {
+  text-transform: uppercase;
+}
+
+.text--xs {
+  opacity: 0.6;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.text--sm {
+  font-size: 1.4rem;
+}
+
+.text--lg {
+  font-size: 2.1rem;
+  @media @min768 {
+    font-size: 2.4rem;
+  }
+}
+
+.text--shadow {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.number {
+  font-variant-numeric: var(--number-style);
+}
+
+.no-bullets { // ol, ul
+  list-style: none;
+}
+
+.columns--2 {
+  @media @min992 {
+    column-gap: var(--space--5);
+    column-count: 2;
+  }
+}
+
+ol.ol--custom-basic {
+  counter-reset: item;
+  list-style-type: none;
+  > li {
+    display: flex;
+    &::before { // counter
+      content: counter(item, decimal-leading-zero) " "; 
+      counter-increment: item;
+      width: 35px;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+ol.ol--custom {
+  counter-reset: item;
+  list-style-type: none;
+  > li {
+    display: flex;
+    &::before { // counter
+      content: counter(item, decimal-leading-zero) " "; 
+      counter-increment: item;
+      margin-top: var(--space--1);
+      width: 40px;
+      flex-shrink: 0;
+      color: var(--colour--secondary-400);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+.heading--overline {
+  .font--heading();
+  color: var(--colour--secondary-400);
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-family: 'RMNeue-Bold', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1.6px;
+  &::after {
+    content: ' —';
+  }
+}
+
+// ========================================================================== //
+// Underline
+
+.underline--hidden(@colour) {
+  .speed--default;
+  padding-bottom: var(--underline--height);
+  text-decoration: none;
+  background-image: linear-gradient(@colour,@colour);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 0% var(--underline--height);
+}
+
+.underline--hidden {
+  .underline--hidden(var(--underline--colour));
+}
+
+.underline(@colour) {
+  .speed--default;
+  padding-bottom: var(--underline--height);
+  text-decoration: none;
+  background-image: linear-gradient(@colour, @colour);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 0% var(--underline--height);
+  &:hover {
+    .underline--hover;
+  }
+}
+
+.underline {
+  .underline(var(--underline--colour));
+}
+
+.underline--center(@colour) {
+  .underline(@colour);
+  background-position: bottom center;
+}
+
+.underline--center {
+  .underline--center(var(--underline--colour));
+}
+
+.underline--hover {
+  background-size: 100% var(--underline--height);
+}

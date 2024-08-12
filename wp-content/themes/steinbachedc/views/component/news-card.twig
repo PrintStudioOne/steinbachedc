@@ -1,0 +1,21 @@
+<article class="news__article" data-filter="{{ article.terms('post_tag')|map(tag => tag.slug)|join(' ') }}">
+  <a href="{{ article.link }}" target="_self">
+    <div class="article__content">
+      <h{{ headingLevel }} class="article__heading h3">{{ article.title|truncate(8, true, '...') }}</h{{ headingLevel }}>
+      <div class="content__bottom">
+        {% set wordCount = article.text|split(' ')|length %}
+        <p class="article__read-time">{% include 'component/read.twig' %}</p>
+        <span class="article__button button--icon-solid">
+          {{ source(directory ~ '/static/images/icons/arrow.svg') }}
+        </span>
+      </div>
+    </div>
+    <picture class="article__image picture--cover">
+      {% if article.image %}
+      <img src="{{ Image(article.image).src }}" alt="{{ Image(article.image).alt }}">
+      {% else %}
+      {{ placeholder }}
+      {% endif %}
+    </picture>
+  </a>
+</article>

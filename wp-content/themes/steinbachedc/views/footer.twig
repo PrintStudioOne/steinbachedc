@@ -1,0 +1,100 @@
+{# Top #}
+<div id="contact" class="footer__contact">
+	<div class="content width--default reveal">
+		<div class="footer__container">
+			<h2 class="footer__heading">{{ options.footer.heading }}</h2>
+			<div class="footer__buttons">
+				{% for button in options.footer.buttons %}
+				<a class="footer__button button--outline-secondary" href="{{ button.link }}" {% include 'partial/button-target.twig' %}>
+					<span class="button__label">{{ button.label }}</span>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+		<nav id="footer-menu" class="footer__menu" role="menu">
+			{% include 'menu.twig' with{'items':menu.get_items} %}
+		</nav>
+	</div>
+</div>
+
+{# Bottom: Colophon #}
+<div id="colophon" class="footer__colophon">
+  <div class="content width--default">
+    {# Logo #}
+    <a id="footer-logo" class="footer__logo" aria-label="{{ site.name }}" href="{{ site.url }}" >
+      {{ source(directory ~ '/static/images/logo.svg') }}
+    </a>
+    {# Contact #}
+		<div class="colophon__contact">
+			{# Address #}
+			{% if options.address.line_1 or options.address.line_2 or options.city or options.province or options.postal_code %}
+			<div class="address_wrapper">
+				<div class="address__text">
+					<p>
+					{% if options.address.line_1 %}
+					{{ options.address.line_1 }}
+					{% endif %}
+					{% if options.address.line_2 %}
+					{{ options.address.line_2 }}
+					{% endif %}
+					{% if options.address.city %}{{ options.address.city }}{% endif %}{% if options.address.city and options.address.province %}, {% endif %}{% if options.address.province %}{{ options.address.province }}{% endif %}{% if options.address.postal_code %}  {{ options.address.postal_code }}{% endif %}
+					</p>
+				</div>
+			</div>
+			{% endif %}
+			{# Phone #}
+			{% if options.phone_number %}
+			<a class="phone_wrapper" href="tel:{{ options.phone_number }}" aria-label="Phone us at {{ options.phone_number }}">
+				<span>p. </span>
+				<span class="phone__text">
+					<span class="phone__number">
+						{% set phoneNumber = options.phone_number %}
+						{% include 'partial/phone-number.twig' %}
+					</span>
+				</span>
+			</a>
+			{% endif %}
+			{# Fax #}
+			{% if options.fax_number %}
+			<a class="fax_wrapper" href="tel:{{ options.fax_number }}" aria-label="Fax us at {{ options.fax_number}}">
+				<span>f. </span> 
+				<span class="fax__text">
+					<span class="fax__number">
+						{% set phoneNumber = options.fax_number %}
+						{% include 'partial/phone-number.twig' %}
+					</span>
+				</span>
+			</a>
+			{% endif %}
+			{# Email #}
+			{% if options.email_address %}
+			<div class="email_wrapper">
+				<span>e. </span>
+				<span class="email__text">
+					{{ fn('do_shortcode', '[email-obfuscate email="' ~ options.email_address ~ '"]') }}
+				</span>
+			</div>
+			{% endif %}
+			{# Social Media #}
+			{% include 'partial/social-media.twig' %}
+		</div>
+		{# Text #}
+    <div class="colophon__text text--sm">
+      <span class="copyright">&copy;{{site.name}} {{"now"|date('Y')}}.</span>
+      <span>
+        Site by <a href="https://psone.ca/" target="_blank" rel="noopener noreferrer">PSOne</a>
+				|
+				{# iubenda Privacy Policy #}
+				<a href="https://www.iubenda.com/privacy-policy/54516312" class="iubenda-nostyle no-brand iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+				|
+				{# iubenda Cookie Policy #}
+				<a href="https://www.iubenda.com/privacy-policy/54516312/cookie-policy" class="iubenda-nostyle no-brand iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+			</span>
+    </div>
+  </div>
+</div>
+
+{# Overlay #}
+<span class="footer__overlay">
+	{{ source(directory ~ '/static/images/lines_footer.svg') }}
+</span>

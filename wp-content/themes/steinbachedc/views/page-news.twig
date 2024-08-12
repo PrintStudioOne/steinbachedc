@@ -1,0 +1,83 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# Feature/Latest article #}
+	{% set id = "feature" %}
+
+	<section id="{{ id }}" class="section--{{ id }} background--primary-100">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if post.feature_article %}
+			{% set heading = 'FEATURE' %}
+    	{% set article = post.meta('feature_article') %}
+			{% else %}
+			{% set heading = 'LATEST' %}
+    	{% set article = news[0] %}
+			{% endif %}
+			<picture class="{{ id }}__image picture--cover">
+				{% if article.image %}
+				<img src="{{ Image(article.image).src }}" alt="{{ Image(article.image).alt }}" loading="lazy">
+				{% else %}
+				{{ placeholder }}
+				{% endif %}
+			</picture>
+			<div class="{{ id }}__container">
+				{# {{ dump(article) }} #}
+				<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+				<a class="{{ id }}__title h3" href="{{ article.link }}" target="_self">{{ article.title }}</a>
+				<div class="content__bottom">
+					{% set wordCount = article.text|split(' ')|length %}
+					<p class="{{ id }}__read-time">{% include 'component/read.twig' %}</p>
+					<a class="{{ id }}__button button--icon-solid" href="{{ article.link }}" target="_self">
+						{{ source(directory ~ '/static/images/icons/arrow.svg') }}
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# News #}
+	{% set id = "news" %}
+
+	<div id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{# Search #}
+			<div class="{{ id }}__search admin-only">
+				<span class="search__icon icon--md">{{ source(directory ~ '/static/images/icons/search.svg') }}</span>
+				<input type="text" id="search" placeholder="Search...">
+			</div>
+			{# Filter #}
+			<div class="{{ id }}__filter">
+				<span class="filter__label">Tags:</span>
+				<button class="filter__button button--outline-primary button--active" data-filter="all">
+					<span class="button__label">All</span>
+				</button>
+				{% for tag in news_tags if tag.count > 0 %}
+				<button class="filter__button button--outline-primary" data-filter="{{ tag.slug }}">
+					<span class="button__label">{{ tag.name }}</span>
+				</button>
+				{% endfor %}
+			</div>
+			{# List #}
+			<div class="{{ id }}__list">
+				{% for article in news %}
+				{% set headingLevel = '2' %}
+				{% include '/component/news-card.twig' %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ site.theme.link }}/static/js/page-news.js"></script>
+{% endblock %}

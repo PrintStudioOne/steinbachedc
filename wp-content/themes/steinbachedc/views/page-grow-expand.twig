@@ -1,0 +1,181 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+{% include 'hero.twig' %} {# <section id="hero"> #}
+
+<div class="content-wrapper">
+
+	{# ACCELERATING BUSINESS #}
+	{% set id = "intro" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+			{% endif %}
+			{% if text %}
+			<div class="{{ id }}__text text">{{ text }}</div>
+			{% endif %}
+			{% if image %}
+			<picture class="{{ id }}__image">
+				<img src="{{ Image(image).src }}" alt="{{ Image(image).alt }}" loading="lazy">
+			</picture>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# ENTREPENEURIAL SPIRIT #}
+	{% set id = "spirit" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--background-image">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+			{% endif %}
+			{% if subheading %}
+			<h3 class="{{ id }}__subheading">{{ subheading }}</h3>
+			{% endif %}
+			{% if text %}
+			<div class="{{ id }}__text text">{{ text }}</div>
+			{% endif %}
+		</div>
+		{% if image %}
+		<picture class="{{ id }}__image picture--background">
+			<img src="{{ Image(image).src }}" alt="{{ Image(image).alt }}" loading="lazy">
+		</picture>
+		{% endif %}
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# TOOLS FOR GROWTH #}
+	{% set id = "growth" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--block background--primary-100">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+			{% endif %}
+			{% if repeater %}
+			<ol class="{{ id }}__repeater ol--custom columns--2">
+				{% for item in repeater %}
+				<li class="item">
+					{% if item.label %}
+					<p class="item__label h3">{{ item.label }}</p>
+					{% endif %}
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# STEINBACH AIRPORT #}
+	{% set id = "airport" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--background-image">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			{% if heading %}
+			<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+			{% endif %}
+			{% if text %}
+			<div class="{{ id }}__text text">{{ subheading }}</div>
+			{% endif %}
+		</div>
+		{% if image %}
+		<picture class="{{ id }}__image picture--background">
+			<img src="{{ Image(image).src }}" alt="{{ Image(image).alt }}" loading="lazy">
+		</picture>
+		{% endif %}
+	</{{ heading ? 'section' : 'div' }}>
+
+	{# ADVANCED ECOSYSTEM #}
+	{% set id = "ecosystem" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<div class="{{ id }}__content_container">
+				{% if heading %}
+				<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+				{% endif %}
+				{% if subheading %}
+				<h3 class="{{ id }}__subheading">{{ subheading }}</h3>
+				{% endif %}
+				{% if text %}
+				<div class="{{ id }}__text text">{{ text }}</div>
+				{% endif %}
+			</div>
+			{% if repeater %}
+			<ul class="{{ id }}__repeater no-bullets">
+				{% for item in repeater %}
+				<li class="item">
+					{% if item.image %}
+					<picture class="item__image icon--xl">
+						<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).src }}" loading="lazy">
+					</picture>
+					{% endif %}
+					{% if item.heading %}
+					<h3 class="item__heading">{{ item.heading }}</h3>
+					{% endif %}
+					{% if item.text %}
+					<div class="item__text text">{{ item.text|wpautop }}</div>
+					{% endif %}
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
+</div>
+
+{% endblock %}

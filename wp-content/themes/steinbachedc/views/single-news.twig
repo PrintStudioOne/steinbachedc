@@ -1,0 +1,62 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<article>
+
+	{% include 'partial/dummy-header.twig' %}
+
+	<div class="content-wrapper">
+
+		{# Article #}
+		{% set id = "article" %}
+
+		<section id="{{ id }}" class="section--{{ id }} section--default">
+			<div class="content width--default reveal">
+				<aside class="{{ id }}__aside">
+					<h1 class="{{ id }}__heading h3">{{ post.title }}</h1>
+					<p class="{{ id }}__date">{{ post.date }}</p>
+					{% set wordCount = article.text|split(' ')|length %}
+        	<p class="article__read-time">{% include 'component/read.twig' %}</p>
+					<hr>
+					<a class="article__button button--custom" href="/news" target="_self">
+						<span class="button__icon button--icon-solid icon--left">
+							{{ source(directory ~ '/static/images/icons/arrow.svg') }}
+						</span>
+						<span class="button__label">Back to News</span>
+					</a>
+				</aside>
+				<div class="{{ id }}__content">
+					<picture class="{{ id }}__image picture--cover">
+						{% if post.image %}
+						<img src="{{ Image(post.image).src }}" alt="{{ Image(post.image).alt }}" loading="lazy">
+						{% else %}
+						{{ placeholder }}
+						{% endif %}
+					</picture>
+					<div class="{{ id }}__text text">{{ post.text|wpautop }}</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="width--default padding--inline">
+			<hr>
+		</div>
+
+		{# Other Articles #}
+		{% set id = "other" %}
+
+		<section id="{{ id }}" class="section--{{ id }} section--default">
+			<div class="content width--default reveal">
+				<h2 class="{{ id }}__heading">Other Articles</h2>
+				<div class="{{ id }}__list">
+					{% for article in news if article.id != post.id %}
+					{% set headingLevel = '3' %}
+					{% include 'component/news-card.twig' %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+	</div>
+</article>
+{% endblock %}

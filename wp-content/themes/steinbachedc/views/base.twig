@@ -1,0 +1,73 @@
+{% block html_head_container %}
+
+{% include 'html-header.twig' %}  {# <html> <head> #}
+	{% block head %}
+	{% endblock %}
+		{# Header scripts #}
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-PJGN599R');</script>
+		<!-- End Google Tag Manager -->
+		{# favicon #}
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/favicon/site.webmanifest">
+		<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#0057b8">
+		<link rel="shortcut icon" href="/favicon/favicon.ico">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+
+	</head>
+{% endblock %}
+
+	<body class="{{ body_class }} {% if not fn('is_single') %}page-{{ post.slug }}{% endif %}" data-template="base.twig">
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJGN599R"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<a class="skip-link screen-reader-text" href="#content">{{ _e( 'Skip to content') }}</a>
+		{# Dev tools #}
+		{% include 'partial/dev-tools.twig' %}
+		{# Notifications #}
+		{% set notifications = "false" %}
+		{% for notification in options.notifications if notification.enable == "true" %}
+			{% set notifications = "true" %}
+		{% endfor %}
+		{# Placeholder image #}
+		{% set placeholder = '<img src="'~ site.theme.link ~'/static/images/placeholder.png" alt="" class="img--placeholder">' %}
+		{# Loader #}
+		{# {% include 'partial/loader.twig' %} #}
+
+		{# Header #}
+		{% block header %}				
+			{% include 'header.twig' %} {# <header> #}
+		{% endblock %}
+
+		{# Main #}
+		<main id="content">
+			{% block content %}
+			{% endblock %}
+		</main>
+
+		{# Footer #}
+		<footer id="site-footer">
+			{% block footer %}
+				{% include 'footer.twig' %}
+			{% endblock %}
+
+			{{ function('wp_footer') }}
+			{# Footer scripts #}
+			{% block javascript %}
+			{% endblock %}
+
+		</footer>
+
+	</body>
+
+</html>
