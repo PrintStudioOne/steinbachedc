@@ -63,6 +63,19 @@
 				{% if section.heading %}
 				<h2 class="section__heading">{{ section.heading }}</h2>
 				{% endif %}
+				{% if section.pdfs %}
+				<div class="section__pdfs">
+					{% for pdf in section.pdfs %}
+					<a class="pdf" href="{{ pdf.file.url }}" target="_blank">
+						<picture class="pdf__image">
+							<img src="{{ Image(pdf.image).src }}" alt="">
+						</picture>
+						<span class="pdf__label">{{ pdf.label }}</span>
+						<span class="pdf__button">View PDF</span>
+					</a>
+					{% endfor %}
+				</div>
+				{% endif %}
 				{% if section.code %}
 				<div class="section__code">{{ section.code }}</div>
 				{% endif %}
