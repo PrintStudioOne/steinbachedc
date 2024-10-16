@@ -1223,8 +1223,8 @@ section.section--hero {
   overflow: hidden;
   z-index: 1;
   position: relative;
-  max-height: 70svh;
-  height: 720px;
+  min-height: 70svh;
+  height: fit-content;
   width: 100%;
   .content {
     z-index: 2;
@@ -1237,6 +1237,12 @@ section.section--hero {
     align-items: flex-start;
     flex-grow: 1;
     .hero__content_container {
+      // Overline
+      p.hero__overline {
+        @media @min992 {
+          font-size: 3.6rem;
+        }
+      }
       // Title
       h1.hero__title {
         margin-bottom: var(--space--3);

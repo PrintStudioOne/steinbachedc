@@ -140,7 +140,7 @@
 	{% set buttons = post.meta(id ~ '_buttons') %}
 	{% set button = post.meta(id ~ '_button') %}
 
-	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--default">
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--repeater section--default">
 		<div class="admin-label">#{{ id }}</div>
 		<div class="content width--default reveal">
 			<div class="{{ id }}__content_container">
@@ -155,7 +155,7 @@
 				{% endif %}
 			</div>
 			{% if repeater %}
-			<ul class="{{ id }}__repeater no-bullets">
+			<ul class="{{ id }}__repeater section__repeater no-bullets">
 				{% for item in repeater %}
 				<li class="item">
 					{% if item.image %}

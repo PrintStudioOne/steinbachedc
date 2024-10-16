@@ -1,4 +1,5 @@
 {% set id = 'hero' %}
+{% set overline = post.meta(id ~ '_overline') %}
 {% set title = post.meta(id ~ '_title') %}
 {% set subtitle = post.meta(id ~ '_subtitle') %}
 {% set buttons = post.meta(id ~ '_buttons') %}
@@ -11,6 +12,10 @@
 	<div class="content width--default">
 		{# Content container #}
 		<div class="hero__content_container introReveal">
+			{# Overline #}
+			{% if overline and 'overline' in post.hero_options %}
+				<p class="hero__overline">{{ overline }}</p>
+			{% endif %}
 			{# Title #}
 			<h1 class="hero__title{% if not fn('is_page', 'Home') %} heading--overline{% endif %}">
 				{% if fn('is_page', 'Home') %}

@@ -31,10 +31,18 @@
 			<ul class="{{ id }}__repeater no-bullets">
 				{% for item in repeater %}
 				<li class="item">
-					{% if item.image %}
-					<picture class="item__image">
-						<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
-					</picture>
+					{% if item.url %}
+					<a class="item__url" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" {% if item.url %}title="Visit {{ item.label }}" aria-label="Visit {{ item.label }}"{% endif %}>
+					{% endif %}
+						{% if item.image %}
+						<picture class="item__image">
+							<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).alt }}" loading="lazy">
+						</picture>
+						{% else %}
+						<p class="item__label">{{ item.label }}</p>
+						{% endif %}
+					{% if item.url %}
+					</a>
 					{% endif %}
 				</li>
 				{% endfor %}

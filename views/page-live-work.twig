@@ -187,6 +187,61 @@
 		</div>
 	</{{ heading ? 'section' : 'div' }}> #}
 
+	{# KEY FACTORS #}
+	{% set id = "sectors" %}
+	{% set heading = post.meta(id ~ '_heading') %}
+	{% set subheading = post.meta(id ~ '_subheading') %}
+	{% set text = post.meta(id ~ '_text')|wpautop %}
+	{% set image = post.meta(id ~ '_image') %}
+	{% set gallery = post.meta(id ~ '_gallery') %}
+	{% set video = post.meta(id ~ '_video') %}
+	{% set repeater = post.meta(id ~ '_repeater') %}
+	{% set buttons = post.meta(id ~ '_buttons') %}
+	{% set button = post.meta(id ~ '_button') %}
+
+	<{{ heading ? 'section' : 'div' }} id="{{ id }}" class="section--{{ id }} section--repeater section--default">
+		<div class="admin-label">#{{ id }}</div>
+		<div class="content width--default reveal">
+			<div class="{{ id }}__content_container">
+				{% if heading %}
+				<h2 class="{{ id }}__heading heading--overline">{{ heading }}</h2>
+				{% endif %}
+				{% if subheading %}
+				<h3 class="{{ id }}__subheading">{{ subheading }}</h3>
+				{% endif %}
+				{% if text %}
+				<div class="{{ id }}__text text">{{ text }}</div>
+				{% endif %}
+			</div>
+			{% if repeater %}
+			<ul class="{{ id }}__repeater section__repeater no-bullets">
+				{% for item in repeater %}
+				<li class="item">
+					{% if item.image %}
+					<picture class="item__image icon--xl">
+						<img src="{{ Image(item.image).src }}" alt="{{ Image(item.image).src }}" loading="lazy">
+					</picture>
+					{% endif %}
+					{% if item.heading %}
+					<h3 class="item__heading">{{ item.heading }}</h3>
+					{% endif %}
+					{% if item.text %}
+					<div class="item__text text">{{ item.text|wpautop }}</div>
+					{% endif %}
+					{% if item.repeater %}
+					<div class="item__repeater">
+					{% for item in item.repeater %}
+					<a class="underline" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+					{% endfor %}
+					</div>
+					{% endif %}
+				</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+	</{{ heading ? 'section' : 'div' }}>
+
 </div>
 
 {% endblock %}
